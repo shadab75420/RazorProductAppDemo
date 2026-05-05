@@ -1,17 +1,16 @@
 # RazorProductApp
 
-A simple ASP.NET Core Razor Pages application demonstrating **complex model binding with collections**.
+An ASP.NET Core Razor Pages application demonstrating advanced concepts including **complex model binding, partial views, and custom routing**.
 
 ---
 
 ## Overview
 
-This project demonstrates how to:
+This project is developed as part of a coding assignment to demonstrate key features of Razor Pages:
 
-* Bind a complex model (Product) in Razor Pages
-* Handle collections (List of Categories)
-* Accept user input through forms
-* Display a list of submitted products dynamically
+* Complex model binding with collections
+* Reusable UI using partial views
+* Custom routing with route parameters
 
 ---
 
@@ -23,18 +22,53 @@ This project demonstrates how to:
 
 ---
 
-## Features
+## User Stories Implementation
 
-* Add a product with:
+### User Story 1: Model Binding with Complex Types and Collections
 
-  * Product ID
+* Created a `Product` model with:
+
+  * ProductID
   * Name
   * Description
-  * Multiple categories
-* Model binding using BindProperty
-* Collection binding using indexed inputs
-* Display list of products with categories
-* Simple and clean UI
+  * List of Categories
+* Implemented form to accept product details
+* Used indexed binding for categories
+* Displayed list of products on the same page
+
+---
+
+### User Story 2: Partial Views
+
+* Created reusable partial view:
+
+  ```
+  Pages/Shared/_ProductCard.cshtml
+  ```
+* Displays product summary including categories
+* Used partial view inside Index page:
+
+  ```
+  <partial name="_ProductCard" model="product" />
+  ```
+* Improved code reusability and modular design
+
+---
+
+### User Story 3: Custom Routing
+
+* Created a new Razor Page: `ProductDetails`
+* Configured route using:
+
+  ```
+  @page "{id:int}"
+  ```
+* Accessed data using route parameter:
+
+  ```
+  /ProductDetails/1
+  ```
+* Displayed product details dynamically
 
 ---
 
@@ -49,8 +83,11 @@ RazorProductApp/
 ├── Pages/
 │   ├── Index.cshtml
 │   ├── Index.cshtml.cs
-│   ├── Privacy.cshtml
-│   └── Shared/
+│   ├── ProductDetails.cshtml
+│   ├── ProductDetails.cshtml.cs
+│   ├── Shared/
+│   │   └── _ProductCard.cshtml
+│   └── Privacy.cshtml
 │
 ├── wwwroot/
 ├── appsettings.json
@@ -64,7 +101,7 @@ RazorProductApp/
 1. Open the project in Visual Studio
 2. Build the solution
 3. Run the application
-4. Open browser and go to:
+4. Open browser and navigate to:
 
 ```
 http://localhost:5000
@@ -72,50 +109,35 @@ http://localhost:5000
 
 ---
 
-## How It Works
+## Application Flow
 
-### Model
-
-* Product model contains:
-
-  * ProductID
-  * Name
-  * Description
-  * List of Categories
-
-### Form Submission
-
-* User enters product details
-* Categories are bound using indexed inputs
-* Data is handled in OnPost() method
-
-### Data Display
-
-* Products are displayed using a loop
-* Categories are shown as a list
+1. Add a product using the form
+2. Product appears in the list (rendered via partial view)
+3. Click "View Details"
+4. Redirects to product details page using route parameter
 
 ---
 
-## Key Concepts
+## Key Concepts Demonstrated
 
 * Razor Pages lifecycle (OnGet, OnPost)
-* Complex model binding
-* Collection binding using index
-* Form handling in ASP.NET Core
+* Model binding with complex objects
+* Collection binding using indexed inputs
+* Partial views for reusable UI
+* Custom routing with parameters
 
 ---
 
 ## Limitations
 
-* Data is stored in memory
+* Data is stored in memory using a static list
 * Data resets when the application restarts
 
 ---
 
 ## Future Improvements
 
-* Add validation
-* Use database for persistent storage
+* Add form validation
+* Use a database for persistent storage
 * Add dynamic category fields
-* Improve UI using Bootstrap
-
+* Improve UI with Bootstrap
