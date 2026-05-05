@@ -1,0 +1,49 @@
+﻿@page
+@model RazorProductApp.Pages.IndexModel
+
+<h2>Add Product</h2>
+
+<form method="post">
+    <input asp-for="NewProduct.ProductID" placeholder="Product ID" /><br /><br />
+    <input asp-for="NewProduct.Name" placeholder="Product Name" /><br /><br />
+    <input asp-for="NewProduct.Description" placeholder="Description" /><br /><br />
+
+    <input asp-for="NewProduct.Categories[0]" />
+    <input asp-for="NewProduct.Categories[1]" />
+    <input asp-for="NewProduct.Categories[2]" />
+
+    <button type="submit">Add Product</button>
+</form>
+
+<hr />
+
+<h2>Product List</h2>
+
+@if (Model.Products.Count == 0)
+{
+    <p>No products added yet.</p>
+}
+else
+{
+    @foreach (var product in Model.Products)
+    {
+        <div>
+            <strong>ID:</strong> @product.ProductID <br />
+            <strong>Name:</strong> @product.Name <br />
+            <strong>Description:</strong> @product.Description <br />
+
+            <strong>Categories:</strong>
+            <ul>
+                @foreach (var cat in product.Categories)
+                {
+                    if (!string.IsNullOrEmpty(cat))
+                    {
+                        <li>@cat</li>
+                    }
+                }
+            </ul>
+
+            <hr />
+        </div>
+    }
+}
