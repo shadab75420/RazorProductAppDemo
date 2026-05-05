@@ -10,7 +10,8 @@ namespace RazorProductApp.Pages
         [BindProperty]
         public Product NewProduct { get; set; } = new Product();
 
-        public List<Product> Products { get; set; } = new List<Product>();
+        // KEEP STATIC (important for routing)
+        public static List<Product> Products { get; set; } = new List<Product>();
 
         public void OnGet()
         {
@@ -31,7 +32,6 @@ namespace RazorProductApp.Pages
 
                 Products.Add(NewProduct);
 
-                // Reset form
                 NewProduct = new Product
                 {
                     Categories = new List<string> { "", "", "" }

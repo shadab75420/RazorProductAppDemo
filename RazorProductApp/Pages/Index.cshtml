@@ -19,31 +19,14 @@
 
 <h2>Product List</h2>
 
-@if (Model.Products.Count == 0)
+@if (RazorProductApp.Pages.IndexModel.Products.Count == 0)
 {
     <p>No products added yet.</p>
 }
 else
 {
-    @foreach (var product in Model.Products)
+    @foreach (var product in RazorProductApp.Pages.IndexModel.Products)
     {
-        <div>
-            <strong>ID:</strong> @product.ProductID <br />
-            <strong>Name:</strong> @product.Name <br />
-            <strong>Description:</strong> @product.Description <br />
-
-            <strong>Categories:</strong>
-            <ul>
-                @foreach (var cat in product.Categories)
-                {
-                    if (!string.IsNullOrEmpty(cat))
-                    {
-                        <li>@cat</li>
-                    }
-                }
-            </ul>
-
-            <hr />
-        </div>
+        <partial name="_ProductCard" model="product" />
     }
 }

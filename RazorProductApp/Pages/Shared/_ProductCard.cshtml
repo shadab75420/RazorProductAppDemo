@@ -1,0 +1,22 @@
+﻿@model RazorProductApp.Models.Product
+
+<div style="border:1px solid black; padding:10px; margin-bottom:10px;">
+    <strong>ID:</strong> @Model.ProductID <br />
+    <strong>Name:</strong> @Model.Name <br />
+    <strong>Description:</strong> @Model.Description <br />
+
+    <strong>Categories:</strong>
+    <ul>
+        @foreach (var cat in Model.Categories)
+        {
+            if (!string.IsNullOrEmpty(cat))
+            {
+                <li>@cat</li>
+            }
+        }
+    </ul>
+
+    <a asp-page="/ProductDetails" asp-route-id="@Model.ProductID">
+        View Details
+    </a>
+</div>

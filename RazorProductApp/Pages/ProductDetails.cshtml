@@ -1,0 +1,26 @@
+﻿@page "{id:int}"
+@model RazorProductApp.Pages.ProductDetailsModel
+
+<h2>Product Details</h2>
+
+@if (Model.Product == null)
+{
+    <p>Product not found</p>
+}
+else
+{
+    <p><strong>ID:</strong> @Model.Product.ProductID</p>
+    <p><strong>Name:</strong> @Model.Product.Name</p>
+    <p><strong>Description:</strong> @Model.Product.Description</p>
+
+    <strong>Categories:</strong>
+    <ul>
+        @foreach (var cat in Model.Product.Categories)
+        {
+            if (!string.IsNullOrEmpty(cat))
+            {
+                <li>@cat</li>
+            }
+        }
+    </ul>
+}
